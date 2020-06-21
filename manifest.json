@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "Widescreen Browsing",
+    "version": "0.1",
+	"content_scripts":[
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content.js"],
+			"run_at": "document_end"
+		}
+	],
+	"permissions": [
+	  "<all_urls>"
+	]
+
+}
