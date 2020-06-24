@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Widescreen Browsing Settings</title>
+		<script src="popup.js"></script>
+		<link rel="stylesheet" type="text/css" href="popup.css">
+	</head>
+	<body>
+		<div id="url-wrapper">
+			<div id="current-url"></div>
+			<div id="activate-wb">
+				<label>
+					<input type="checkbox" id="option-activate-wb">
+					limit page width
+				</label>
+			</div>
+		</div>
+		<div id="options-wrapper">
+			<div id="options-wrapper-overlay"></div>
+			Set width:
+			<div class="width-setting">
+				<button id="option-decrease-width">-100</button><input type="number" id="option-width-setting" value="1400"><button id="option-increase-width">+100</button>
+			</div>
+			Select used method:
+			<div id="method-selection">
+				<label>
+					<input type="radio" id="option-method-automatic" value="automatic" name="option-method" checked>
+					automatic
+				</label><br>
+
+				<label>
+					<input type="radio" id="option-method-absolute" value="absolute" name="option-method">
+					absolute
+				</label><br>
+				<label>
+					<input type="radio" id="option-method-relative" value="relative" name="option-method">
+					relative
+				</label>
+			</div>
+		</div>
+	</body>
+</html>

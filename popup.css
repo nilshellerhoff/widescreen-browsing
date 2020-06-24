@@ -1,0 +1,87 @@
+body {
+    width: 250px;
+    height: 300px;
+    font-family: "Arial", "sans-serif";
+    font-size: 14px;
+	user-select: none;
+	background-color: #fafafa;
+}
+
+div#url-wrapper {
+	border-bottom: 1px solid #aaa;
+}
+
+div#current-url {
+	font-size: 14px;
+	text-align: center;
+	font-weight: bold;
+	padding: 10px 0 5px 0;
+}
+
+div#options-wrapper {
+	width: 80%;
+	margin: auto;
+	position: relative;
+	padding: 10px 0 10px 0;
+}
+
+div#options-wrapper-overlay {
+	background-color: #fafafadd;     
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+div#activate-wb {
+	padding: 10px 0 10px 0;
+}
+
+div.width-setting {
+	width: 150px;
+	height: 25px;
+	margin: 10px auto;
+}
+
+div.width-setting > button {
+	width: 40px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #ddd;
+	border: 1px solid black;
+}
+
+div.width-setting > input {
+	width: calc(100% - 2*40px);
+	height: calc(100% - 2px);
+	margin: 0;
+	padding: 0;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	border-right-style: none;
+	border-left-style: none;
+	text-align: center;
+}
+
+div.width-setting > input:focus, div.width-setting > button:focus {
+	outline: none;
+}
+
+div#method-selection {
+	margin: 10px auto;
+}
+
+/* Hide arrows in number field */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
