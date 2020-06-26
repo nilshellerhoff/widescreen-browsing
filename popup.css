@@ -11,6 +11,26 @@ div#url-wrapper {
 	border-bottom: 1px solid #aaa;
 }
 
+div#wb-icon {
+	width: 50px;
+	height: 50px;
+	margin: auto;
+	background: url('icon-128.png') no-repeat;
+}
+
+div#favicon {
+	width: 16px;
+	height: 16px;
+	background-image: url('chrome://favicon/https://example.org') no-repeat;
+	background-size: contain;
+	margin-bottom: -2px;
+	display: inline-block;
+}
+
+div#url {
+	display: inline-block;
+}
+
 div#current-url {
 	font-size: 14px;
 	text-align: center;

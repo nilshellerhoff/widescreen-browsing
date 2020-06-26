@@ -1,8 +1,7 @@
 {
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "widescreen-browsing@example.com",
-			"strict_min_version": "42.0"
+			"id": "widescreen-browsing@example.com"
 		}
 	},
     "manifest_version": 2,
@@ -15,13 +14,14 @@
 			"run_at": "document_end"
 		}
 	],
+	"content_security_policy": "script-src 'self'; object-src 'self'; img-src chrome://favicon 'self' data:;",
 	"browser_action": {
-	    "default_icon": "icon.png",
+	    "default_icon": "icon-48.png",
 	    "default_popup": "popup.html"
 	},
 	"permissions": [
 	  "tabs",
-	  "storage"
+	  "storage",
+	  "chrome://favicon/"
 	]
-
 }

@@ -1,27 +1,27 @@
 function setUrl() {
 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 	    url = new URL(tabs[0].url)
-	    document.getElementById('current-url').innerHTML = url.hostname;
+	    document.getElementById('url').innerHTML = url.hostname;
+	    // Check if running in Firefox
+		var isFirefox = typeof InstallTrigger !== 'undefined';
+		if (isFirefox) {
+			document.getElementById('favicon').style.backgroundImage = "url(" + tabs[0].favIconUrl + ")"; /* Firefox */
+		} else {
+	    	document.getElementById('favicon').style.backgroundImage = "url(chrome://favicon/" + url.href + ")" /* Chrome */
+	   	}
 	});
-}
-
-function update() {
-	if (document.getElementById('option-width-setting').value < 100) {
-		document.getElementById('option-width-setting').value = 100
-	}
-	writeData();
-	updatePage();
-	setOverlay();
 }
 
 function loadData() {
 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 	    url = new URL(tabs[0].url)
 		chrome.storage.sync.get([url.hostname], function(result) {
-			document.getElementById('option-activate-wb').checked = result[url.hostname]["activated"];
-			document.getElementById('option-width-setting').value = result[url.hostname]["width"];
-			setSelectedMethod(result[url.hostname]["method"]);
-			setOverlay();
+			if (result != undefined) {
+				document.getElementById('option-activate-wb').checked = result[url.hostname]["activated"];
+				document.getElementById('option-width-setting').value = result[url.hostname]["width"];
+				setSelectedMethod(result[url.hostname]["method"]);
+				setOverlay();
+			}
 		});
 	});
 }
@@ -74,6 +74,15 @@ function setOverlay() {
 	} else {
 		document.getElementById('options-wrapper-overlay').style.display = "initial";
 	}
+}
+
+function update() {
+	if (document.getElementById('option-width-setting').value < 100) {
+		document.getElementById('option-width-setting').value = 100
+	}
+	writeData();
+	updatePage();
+	setOverlay();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
