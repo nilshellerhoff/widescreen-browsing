@@ -16,6 +16,7 @@ div#wb-icon {
 	height: 50px;
 	margin: auto;
 	background: url('icon-128.png') no-repeat;
+	background-size: contain;
 }
 
 div#favicon {
