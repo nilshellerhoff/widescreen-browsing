@@ -23,6 +23,9 @@ function setCssWidth(width, method) {
 		case "relative":
 			setCssWidthRelative(width);
 			break;
+		case "margin":
+			setCssWidthMargin(width);
+			break;
 	}
 }
 
@@ -36,6 +39,12 @@ function setCssWidthRelative(width) {
 	document.getElementsByTagName('html')[0].style.position = "relative";
 	document.getElementsByTagName('html')[0].style.width = width + "px";
 	document.getElementsByTagName('html')[0].style.left = (window.innerWidth - width)/2 + "px";	
+}
+
+function setCssWidthMargin(width) {
+	document.getElementsByTagName('html')[0].style.width = width + "px";
+	document.getElementsByTagName('html')[0].style.marginLeft = "auto";
+	document.getElementsByTagName('html')[0].style.marginRight = "auto";
 }
 
 // Add reload listener
