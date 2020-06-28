@@ -6,6 +6,12 @@
 	},
     "manifest_version": 2,
     "name": "Widescreen Browsing",
+    "description": "Limit the width of webpages for a better widescreen experience"
+    "icons": {
+    	"16": "icon-16.png",
+    	"48": "icon-48.png",
+    	"128": "icon-128.png"
+    },
     "version": "0.1",
 	"content_scripts":[
 		{
