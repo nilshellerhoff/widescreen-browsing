@@ -1,6 +1,7 @@
 # Widescreen Browsing
 
-<a href="https://addons.mozilla.org/en-US/firefox/addon/widescreen-browsing/"><img src="https://ffp4g1ylyit3jdyti1hqcvtb-wpengine.netdna-ssl.com/addons/files/2015/11/get-the-addon.png"></a>  Available for Chrome soon!
+<a href="https://addons.mozilla.org/en-US/firefox/addon/widescreen-browsing/"><img src="https://ffp4g1ylyit3jdyti1hqcvtb-wpengine.netdna-ssl.com/addons/files/2015/11/get-the-addon.png" width="172px" alt="Get the addon for Firefox"></a>
+<a href="https://chrome.google.com/webstore/detail/widescreen-browsing/glpelpaljileehhngbcjpkehidnipifg"><img src="https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_340x96.png" width="230px" alt="Get the extension for Chrome"></a>
 
 Some Webpages like Wikipedia insist on using the whole screen width, which makes them annoying to read. This extension reduces the width of webpages on screen. You can set a custom width per domain, which will be saved and automatically applied everytime you go to this domain. 
 
