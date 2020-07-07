@@ -1,4 +1,8 @@
 function setWidth() {
+	if (document.contentType.match("text/.*") == null) {
+		// if ContentType note like text/something, do not set width
+		return;
+	}
 	url = window.location.host
 	chrome.storage.sync.get([url], function(result) {
 		if (result != undefined) {
