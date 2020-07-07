@@ -2,13 +2,7 @@ function setUrl() {
 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 	    url = new URL(tabs[0].url)
 	    document.getElementById('url').innerHTML = url.hostname;
-	    // Check if running in Firefox
-		var isFirefox = typeof InstallTrigger !== 'undefined';
-		if (isFirefox) {
-			document.getElementById('favicon').style.backgroundImage = "url(" + tabs[0].favIconUrl + ")"; /* Firefox */
-		} else {
-	    	document.getElementById('favicon').style.backgroundImage = "url(chrome://favicon/" + url.href + ")" /* Chrome */
-	   	}
+		document.getElementById('favicon').style.backgroundImage = "url(" + tabs[0].favIconUrl + ")";
 	});
 }
 
