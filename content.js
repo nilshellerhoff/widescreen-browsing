@@ -9,7 +9,7 @@ function setWidth() {
 			let activated = result[url]["activated"];
 			let width = result[url]["width"];
 			let method = result[url]["method"];
-			if (activated) {
+			if (activated & width < window.innerWidth) {
 				setCssWidth(width, method);
 			} else {
 				setOriginalCss();
@@ -68,3 +68,5 @@ chrome.runtime.onMessage.addListener(
 
 const origCss = document.getElementsByTagName('html')[0].style.cssText;
 setWidth();
+
+window.addEventListener('resize', setWidth);
