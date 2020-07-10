@@ -11,9 +11,15 @@ function setWidth() {
 			let method = result[url]["method"];
 			if (activated) {
 				setCssWidth(width, method);
+			} else {
+				setOriginalCss();
 			}
 		}
 	});
+}
+
+function setOriginalCss() {
+	document.getElementsByTagName('html')[0].style.cssText = origCss;
 }
 
 function setCssWidth(width, method) {
@@ -54,9 +60,10 @@ function setCssWidthMargin(width) {
 // Add reload listener
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
-		if (request.action == "reload") {
-			location.reload()
+		if (request.action == "update") {
+			setWidth();
 		}
 });
 
+const origCss = document.getElementsByTagName('html')[0].style.cssText;
 setWidth();
