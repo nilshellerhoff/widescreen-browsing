@@ -29,6 +29,9 @@ div#favicon {
 
 div#url {
 	display: inline-block;
+	max-width: 220px;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 div#current-url {
