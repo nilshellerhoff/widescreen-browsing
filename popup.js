@@ -54,12 +54,15 @@ function setSelectedMethod(value) {
 	}
 }
 
-function updatePage() {
-	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-		chrome.tabs.sendMessage(tabs[0].id, {action: "reload"}, function(response) {
-		});
-	});
+function changeWidthSetting(diff) {
+	let currval = Number(document.getElementById('option-width-setting').value);
+	if (currval + diff >= 100) {
+		document.getElementById('option-width-setting').value = currval + diff;
+	} else {
+		document.getElementById('option-width-setting').value = 100;
+	}
 }
+
 
 function setOverlay() {
 	let wbActivated = document.getElementById('option-activate-wb').checked;
@@ -70,10 +73,15 @@ function setOverlay() {
 	}
 }
 
+function updatePage() {
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+		chrome.tabs.sendMessage(tabs[0].id, {action: "reload"}, function(response) {
+		});
+	});
+}
+
 function update() {
-	if (document.getElementById('option-width-setting').value < 100) {
-		document.getElementById('option-width-setting').value = 100
-	}
+	changeWidthSetting(0);
 	writeData();
 	updatePage();
 	setOverlay();
@@ -88,16 +96,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	})
 
 	document.getElementById('option-decrease-width').addEventListener('click', function() {
-		let val = Number(document.getElementById('option-width-setting').value);
-		if (val >= 200) {
-			document.getElementById('option-width-setting').value = val - 100;
-		}
+		changeWidthSetting(-100);
 		update();
 	})
 
 	document.getElementById('option-increase-width').addEventListener('click', function() {
-		let val = Number(document.getElementById('option-width-setting').value);
-		document.getElementById('option-width-setting').value = val + 100;
+		changeWidthSetting(100);
 		update();
 	})
 })
