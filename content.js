@@ -63,6 +63,7 @@ chrome.runtime.onMessage.addListener(
 		if (request.action == "update") {
 			setWidth();
 		}
+		sendResponse({response: "roger"});
 });
 
 const origCss = document.getElementsByTagName('html')[0].style.cssText;

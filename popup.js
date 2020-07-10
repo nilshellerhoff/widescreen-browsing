@@ -76,6 +76,12 @@ function setOverlay() {
 function updatePage() {
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		chrome.tabs.sendMessage(tabs[0].id, {action: "update"}, function(response) {
+			var lastError = chrome.runtime.lastError;
+	    	if (lastError) {
+		        // if message can not be sent, reload (happens directly after installation)
+		        chrome.tabs.reload();
+	        return;
+    		}
 		});
 	});
 }
