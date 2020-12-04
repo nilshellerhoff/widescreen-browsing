@@ -23,7 +23,7 @@ function jumpToAnchor() {
 	// Check url and split on hash sign
 	url = window.location["href"];
 	if ( url.split("#").length = 2 ) {
-		window.location = url.split("#")[1];
+		window.location = "#" + url.split("#")[1];
 	}
 }
 
