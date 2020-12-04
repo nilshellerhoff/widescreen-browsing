@@ -1,4 +1,9 @@
 {
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "widescreen-browsing@example.com"
+		}
+	},
     "manifest_version": 2,
     "name": "Widescreen Browsing",
     "description": "Limit the width of webpages for a better widescreen experience",

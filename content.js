@@ -11,11 +11,20 @@ function setWidth() {
 			let method = result[url]["method"];
 			if (activated & width < window.innerWidth) {
 				setCssWidth(width, method);
+				jumpToAnchor();
 			} else {
 				setOriginalCss();
 			}
 		}
 	});
+}
+
+function jumpToAnchor() {
+	// Check url and split on hash sign
+	url = window.location["href"];
+	if ( url.split("#").length = 2 ) {
+		window.location = "#" + url.split("#")[1];
+	}
 }
 
 function setOriginalCss() {
