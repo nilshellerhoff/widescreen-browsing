@@ -1,4 +1,11 @@
+function debug(msg) {
+	if (debugging) {
+		console.log(msg)
+	}	
+}
+
 function setWidth() {
+	debug("setting width")
 	if (document.contentType.match("text/.*") == null) {
 		// if ContentType note like text/something, do not set width
 		return;
@@ -28,6 +35,7 @@ function jumpToAnchor() {
 }
 
 function setOriginalCss() {
+	debug("setting original css")
 	document.getElementsByTagName('html')[0].style.cssText = origCss;
 }
 
@@ -75,7 +83,26 @@ chrome.runtime.onMessage.addListener(
 		sendResponse({response: "roger"});
 });
 
+// Add event listener for setting original CSS when resizing window or switchting to fullscreen mode
+function onFullscreenResize() {
+	// have we just switched to fullscreen mode?
+	isFullscreen = !(document.fullscreenElement == null)
+
+	// if yes, set the original CSS
+	// otherwise set user defined width
+	if (isFullscreen) {
+		debug("entering fullscreen")
+		setOriginalCss();
+	} else {
+		debug("not in fullscreen")
+		setWidth()
+	}
+
+}
+document.addEventListener('fullscreenchange', onFullscreenResize)
+window.addEventListener('resize', onFullscreenResize)
+
+const debugging = false;
+
 const origCss = document.getElementsByTagName('html')[0].style.cssText;
 setWidth();
-
-window.addEventListener('resize', setWidth);
