@@ -10,7 +10,7 @@ function loadData() {
 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 	    url = new URL(tabs[0].url)
 		chrome.storage.sync.get([url.hostname], function(result) {
-			if (result != undefined) {
+			if (result[url.hostname] != undefined) {
 				document.getElementById('option-activate-wb').checked = result[url.hostname]["activated"];
 				document.getElementById('option-width-setting').value = result[url.hostname]["width"];
 				setSelectedMethod(result[url.hostname]["method"]);
