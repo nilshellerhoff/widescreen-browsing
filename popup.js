@@ -1,7 +1,7 @@
 function setUrl() {
 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 	    url = new URL(tabs[0].url)
-	    document.getElementById('url').innerHTML = url.hostname;
+	    document.getElementById('url').innerHTML = url.host;
 		document.getElementById('favicon').style.backgroundImage = "url(" + tabs[0].favIconUrl + ")";
 	});
 }
@@ -9,11 +9,11 @@ function setUrl() {
 function loadData() {
 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 	    url = new URL(tabs[0].url)
-		chrome.storage.sync.get([url.hostname], function(result) {
+		chrome.storage.sync.get([url.host], function(result) {
 			if (result != undefined) {
-				document.getElementById('option-activate-wb').checked = result[url.hostname]["activated"];
-				document.getElementById('option-width-setting').value = result[url.hostname]["width"];
-				setSelectedMethod(result[url.hostname]["method"]);
+				document.getElementById('option-activate-wb').checked = result[url.host]["activated"];
+				document.getElementById('option-width-setting').value = result[url.host]["width"];
+				setSelectedMethod(result[url.host]["method"]);
 				setOverlay();
 			}
 		});
@@ -24,7 +24,7 @@ function writeData() {
 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 	    url = new URL(tabs[0].url)
 	    let obj = {};
-	    obj[url.hostname] = {
+	    obj[url.host] = {
 	    	"activated": document.getElementById('option-activate-wb').checked,
 			"width": Number(document.getElementById('option-width-setting').value),
 			"method": getSelectedMethod(),
