@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Widescreen Browsing",
     "description": "Limit the width of webpages for a better widescreen experience",
     "icons": {
@@ -15,8 +15,10 @@
 			"run_at": "document_end"
 		}
 	],
-	"content_security_policy": "script-src 'self'; object-src 'self'; img-src chrome://favicon http://* https://* 'self' data:;",
-	"browser_action": {
+	"content_security_policy": {
+		"extension_pages": "script-src 'self'; object-src 'self'; img-src chrome://favicon http://* https://* 'self' data:;"
+	},
+	"action": {
 	    "default_icon": "icon-48.png",
 	    "default_popup": "popup.html"
 	},
