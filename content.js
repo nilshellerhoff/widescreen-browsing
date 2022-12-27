@@ -68,10 +68,54 @@ function setCssWidthRelative(width) {
 	document.getElementsByTagName('html')[0].style.left = (window.innerWidth - width)/2 + "px";	
 }
 
+// function setCssWidthMargin(width) {
+// 	document.getElementsByTagName('html')[0].style.width = width + "px";
+// 	document.getElementsByTagName('html')[0].style.marginLeft = "auto";
+// 	document.getElementsByTagName('html')[0].style.marginRight = "auto";
+// }
+
 function setCssWidthMargin(width) {
-	document.getElementsByTagName('html')[0].style.width = width + "px";
-	document.getElementsByTagName('html')[0].style.marginLeft = "auto";
-	document.getElementsByTagName('html')[0].style.marginRight = "auto";
+	url = window.location.href;
+	host = window.location.host;
+	origHtml = '<!DOCTYPE html>' + document.documentElement.outerHTML;
+	title = document.title;
+
+	document.documentElement.innerHTML = `
+	<head>
+	<title>${title}</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#wb-iframe {
+			width: ${width}px;
+			margin-left: ${(window.innerWidth - width)/2}px;
+			margin-right: auto;
+			border: none;
+			overflow: visible;
+		}
+	</style>
+	</head>
+	<body>
+		<iframe id="wb-iframe" scrolling="no" src="${url}"></iframe>
+	</body>`;
+
+	let iframe = document.getElementById("wb-iframe");
+
+	// detect the press of the back button
+	window.addEventListener('popstate', function (event) {
+		iframe.contentWindow.history.back();
+	});
+
+	iframe.onload = function() {
+		iframe.height = window.innerHeight;
+		iframe.height = iframe.contentWindow.document.body.scrollHeight;
+		if (window.location.href != iframe.contentWindow.location.href) {
+			window.history.pushState(null, iframe.contentDocument.title, iframe.contentWindow.location.href);
+		}
+		document.title = iframe.contentDocument.title;
+	}
 }
 
 // Add reload listener
