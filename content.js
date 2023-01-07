@@ -18,6 +18,7 @@ function setWidth() {
 			let method = result[url]["method"];
 			if (activated & width < window.innerWidth) {
 				setCssWidth(width, method);
+				applyCssRules(width, method);
 				jumpToAnchor();
 			} else {
 				setOriginalCss();
@@ -72,6 +73,42 @@ function setCssWidthMargin(width) {
 	document.getElementsByTagName('html')[0].style.width = width + "px";
 	document.getElementsByTagName('html')[0].style.marginLeft = "auto";
 	document.getElementsByTagName('html')[0].style.marginRight = "auto";
+}
+
+function applyCssRules(width, method) {
+	url = window.location.host
+
+	// get the rules from rules.js
+	rules = wbGetCssRules(url, width)
+
+	// rules which apply to the current host are all where the page regex matches the host
+	cssRules = rules.map(r => r.rules)
+	// uniqueSelectors = new Set(cssRules.map(r => Object.keys(r)).flat())
+
+	styleStr = "";
+
+	console.log(cssRules)
+
+	// iterate through all the rules and add them to the style string
+	cssRules.forEach(rule => {
+		Object.keys(rule).forEach(selector => {
+			// add the selector
+			styleStr += selector + " {";
+
+			// for each CSS property listed, add it to the style string
+			Object.keys(rule[selector]).forEach(property => {
+				styleStr += property + ": " + rule[selector][property] + ";";
+			})
+			styleStr += "} "
+		})
+	})
+
+	console.log(styleStr);
+
+	style = document.createElement("style");
+	style.setAttribute("id", "wbStyle");
+	style.innerHTML = styleStr;
+	document.head.appendChild(style);
 }
 
 // Add reload listener
