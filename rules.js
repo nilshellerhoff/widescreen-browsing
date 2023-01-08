@@ -1,5 +1,6 @@
-// These are specific rules for pages which have elements which don't work.
+// These are specific rules for pages which have elements which don't work (typically because they are positioned absolutely)
 // variables can be used via JS template strings (also calculations can be performed this way)
+//
 // available variables:
 // sw - screen width (window.innerWidth)
 // tw - target width (the width as desired by the user)
@@ -17,39 +18,17 @@ wbGetCssRules = function(url, tw) {
             page: "[^ ]*.wikipedia.org",
             preferred: "absolute",
             rules: {
-                // shift article previews, citation popups, history comparison popups
-                ".mwe-popups, .rt-tooltip": {
-                    "margin-left": `-${hw}px`,
-                },
+                // shift article previews, citation popups
+                ".mwe-popups, .rt-tooltip": { "margin-left": `-${hw}px` },
                 // move search suggestions under search box
-                ".suggestions": {
-                    "margin-right": `-${hw - 15}px`,
-                }
+                ".suggestions": { "margin-right": `-${hw - 15}px` }
+            }
+        }, {
+            page: "geizhals.de",
+            rules: {
+                "#breadcrumbs__quicklist": { "margin-left": `-${hw}px` },
             }
         },
-        {
-            page: "youtube.com",
-            preferred: "custom",
-            rules: {
-                // limit header width
-                "#masthead-container": {
-                    "max-width": `${tw}px`,
-                },
-                // move sidebar closer to content
-                "tp-yt-app-drawer, ytd-mini-guide-renderer": {
-                    "margin-left": `${hw}px`,
-                },
-            }
-        },
-        {
-            page: "[^ ]*",
-            preferred: "automatic",
-            rules: {
-                ".asdf": {
-                    "margin-left": `${0}px`,
-                },
-            }
-        }
     ]
 
     // only return rules which match the current host
