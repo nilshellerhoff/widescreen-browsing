@@ -18,7 +18,7 @@ function wbApplySettings() {
 	chrome.storage.sync.get([url], function(result) {
 
 		// check if there are stored settings for the current host
-		if (result != undefined) {
+		if (result != undefined && result[url] != undefined) {
 			let activated = result[url]["activated"];
 			let width = result[url]["width"];
 			let method = result[url]["method"];
