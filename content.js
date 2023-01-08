@@ -1,4 +1,6 @@
 function wbDebug(msg) {
+	const debugging = false;
+
 	if (debugging) {
 		console.log(msg)
 	}	
@@ -213,7 +215,5 @@ function onFullscreenResize() {
 
 document.addEventListener('fullscreenchange', onFullscreenResize)
 window.addEventListener('resize', onFullscreenResize)
-
-const debugging = true;
 
 wbApplySettings();
