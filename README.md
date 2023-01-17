@@ -10,7 +10,7 @@ Limit the width of webpages | Save your settings per domain
 
 ### Special rules support
 
-Since version 1.0.5 the extension supports special rules for elements on pages, which don't adjust properly. E.g. on Wikipedia the popups for citations and article previews are positioned absolutely and thus appear in the wrong location when using the extension. The rules are listed in `rules.js` in the following format:
+Since version 1.0.5 the extension supports special rules for elements on pages which don't appear properly when the extension is activated. E.g. on Wikipedia, the popups for citations and article previews are positioned absolutely and thus appear in the wrong location when using the extension. The rules are listed in `rules.js` in the following format:
 
 ```
 rules = [
