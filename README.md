@@ -7,3 +7,26 @@ Some Webpages like Wikipedia insist on using the whole screen width, which makes
 Limit the width of webpages | Save your settings per domain
 :-------------------------:|:-------------------------:
 ![](./publish/screenshots/Screenshot1.svg.png)  |  ![](/publish/screenshots/Screenshot3.svg.png) |  
+
+### Special rules support
+
+Since version 1.0.5 the extension supports special rules for elements on pages, which don't adjust properly. E.g. on Wikipedia the popups for citations and article previews are positioned absolutely and thus appear in the wrong location when using the extension. The rules are listed in `rules.js` in the following format:
+
+```
+rules = [
+  {
+    page: "[^ ]*.wikipedia.org",    <-- regex, which hosts should be affected by this rule
+    preferred: "absolute",          <-- the preferred method for reducing page width. If none is given, defaults to "absolute"
+    rules: {                        <-- rules in the format "selector" : { "property": "value" }, each rule should be commented with it's purpose
+      // shift article previews, citation popups
+      ".mwe-popups, .rt-tooltip": { "margin-left": `-${hw}px` },
+      // move search suggestions under search box
+      ".suggestions": { "margin-right": `-${hw - 15}px` }
+    }
+  },
+]
+```
+
+Rules are only applied when "automatic" mode for positioning is selected.
+
+Requests for new pages can be filed by [creating a new issue](https://github.com/nilshellerhoff/widescreen-browsing/issues/new). Currently rules can only be updated by updating the entire extension, a self-update process is planned at some point.
